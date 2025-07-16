@@ -4,3 +4,5 @@ pandas
 matplotlib
 joblib
 imblearn
+scikit-learn==1.0.2
+
