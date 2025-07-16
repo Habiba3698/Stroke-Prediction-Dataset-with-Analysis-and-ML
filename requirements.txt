@@ -5,4 +5,5 @@ matplotlib
 joblib
 imbalanced-learn
 scikit-learn
+statsmodels
 
