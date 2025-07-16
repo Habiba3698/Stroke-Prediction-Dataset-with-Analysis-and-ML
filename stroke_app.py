@@ -74,9 +74,11 @@ with tab1:
         st.plotly_chart(px.histogram(grouped, x=selected_feature, color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
         st.plotly_chart(px.strip(df, x='stroke', y=selected_feature, color='stroke', stripmode='overlay', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
-        st.plotly_chart(px.bar(grouped[selected_feature].value_counts().reset_index(), 
-                               x='index', y=selected_feature, color='index', color_discrete_sequence=px.colors.qualitative.Vivid))
-        
+         counts_df = grouped[selected_feature].value_counts().reset_index()
+         counts_df.columns = [selected_feature, 'count']
+
+        st.plotly_chart(px.bar(counts_df, 
+                               x='count', y=selected_feature, color='count', color_discrete_sequence=px.colors.qualitative.Vivid))
         
         with tab2:
                 st.subheader("🔀 Multivariate Analysis")
