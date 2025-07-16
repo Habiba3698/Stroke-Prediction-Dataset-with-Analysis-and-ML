@@ -55,9 +55,11 @@ with tab1:
         st.plotly_chart(px.histogram(df_filtered, x=selected_feature, color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
         st.warning("Selected column is not numeric. Can't calculate statistics")
+        counts_df = df_filtered[selected_feature].value_counts().reset_index()
+        counts_df.columns = [selected_feature, 'count']
 
-        st.plotly_chart(px.bar(df_filtered[selected_feature].value_counts().reset_index(), 
-                               x='index', y=selected_feature, color='index', color_discrete_sequence=px.colors.qualitative.Vivid))
+        st.plotly_chart(px.bar(counts_df, 
+                               x='count', y=selected_feature, color='count', color_discrete_sequence=px.colors.qualitative.Vivid))
     # bivariate analysis but stroke rate for each case not counts 
     st.subheader("Bivariate Analysis with stroke rate (not counts)")
     
