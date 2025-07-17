@@ -35,7 +35,7 @@ def main():
     heart_disease= st.selectbox('Do they have Heart Disease?',['0','1'])
     ever_married= st.selectbox('Were they ever married?',['Yes','No'])
     work_type= st.selectbox('What is their work type? Are they children maybe?',['Private', 'Self-employed', 'Govt_job', 'children', 'Never_worked'])
-    residence_type= st.selectbox('Were they ever married?',['Urban', 'Rural'])
+    residence_type= st.selectbox('What is their residence type?',['Urban', 'Rural'])
     avg_glucose_level= st.slider('What is their average blood sugar level?',min_value= 1.0,max_value= 280.0,value=50.0,step=1.0)
     bmi= st.slider('What is their BMI?',min_value= 1.0,max_value= 100.0,value=20.0,step=1.0)
     smoking_status= st.selectbox('Do they currently smoke or have they ever smoked?',['formerly smoked', 'never smoked', 'smokes', 'Unknown'])
