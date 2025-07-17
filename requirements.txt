@@ -1,9 +1,0 @@
-pandas
-numpy
-scikit-learn==1.1.3
-imbalanced-learn==0.10.1  
-seaborn
-matplotlib
-plotly
-joblib
-statsmodels
