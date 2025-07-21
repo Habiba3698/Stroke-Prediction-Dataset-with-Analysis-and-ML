@@ -55,8 +55,6 @@ with tab1:
         st.plotly_chart(px.histogram(df_filtered, x=selected_feature, color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
         st.warning("Selected column is not numeric. Can't calculate statistics")
-        counts_df = df_filtered[selected_feature].value_counts().reset_index()
-        counts_df.columns = [selected_feature, 'count']
 
         st.plotly_chart(px.histogram(df_filtered, x=selected_feature, color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
 
@@ -69,6 +67,11 @@ with tab1:
     grouped['percent'] = grouped.groupby(selected_feature)['no_of_individuals'].transform(lambda x: x / x.sum() * 100)
     
     st.dataframe(grouped)
+     if stroke_filter != 'All':
+        grouped = grouped[grouped['stroke'] == int(stroke_filter)]
+     else:
+         grouped=grouped
+    
 
     if pd.api.types.is_numeric_dtype(df_filtered[selected_feature]):
         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent', color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
