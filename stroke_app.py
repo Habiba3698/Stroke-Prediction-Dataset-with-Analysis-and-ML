@@ -65,7 +65,7 @@ with tab1:
     
     st.write(f"### Rate of stroke with {selected_feature}")
     # display the rate of each stroke case with feature
-    grouped= df_filtered.groupby([selected_feature, 'stroke']).size().reset_index(name='no_of_individuals')   
+    grouped= df_filtered.groupby([selected_feature, 'stroke'], dropna=False).size().reset_index(name='no_of_individuals')   
     grouped['percent'] = grouped.groupby(selected_feature)['no_of_individuals'].transform(lambda x: x / x.sum() * 100)
     
     st.dataframe(grouped)
