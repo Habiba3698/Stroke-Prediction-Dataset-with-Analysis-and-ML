@@ -76,6 +76,8 @@ with tab1:
     else:
          counts_df = grouped[selected_feature].value_counts().reset_index()
          counts_df.columns = [selected_feature, 'count']
+         st.dataframe(grouped)
+
 
          st.plotly_chart(px.bar(counts_df, 
                                x='count', y=selected_feature, color='count', color_discrete_sequence=px.colors.qualitative.Vivid))
