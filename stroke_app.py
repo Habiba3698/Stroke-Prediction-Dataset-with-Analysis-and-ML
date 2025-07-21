@@ -65,20 +65,12 @@ with tab1:
     
     st.write(f"### Rate of stroke with {selected_feature}")
     # display the rate of each stroke case with feature
-    grouped= df_filtered.groupby([selected_feature, 'stroke'], dropna=False).size().reset_index(name='no_of_individuals')   
+    grouped= df.groupby([selected_feature, 'stroke'], dropna=False).size().reset_index(name='no_of_individuals')   
     grouped['percent'] = grouped.groupby(selected_feature)['no_of_individuals'].transform(lambda x: x / x.sum() * 100)
     
     st.dataframe(grouped)
-    crosstab = pd.crosstab(
-    df_filtered[selected_feature],
-    df_filtered['stroke'],
-    normalize='index'  # Normalize across rows
-    ) * 100
 
-    crosstab = crosstab.reset_index()
-    st.dataframe(crosstab)
-    
-    if pd.api.types.is_numeric_dtype(grouped[selected_feature]):
+    if pd.api.types.is_numeric_dtype(df_filtered[selected_feature]):
         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent', color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
         st.plotly_chart(px.strip(df, x='stroke', y=selected_feature, color='stroke', stripmode='overlay', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
