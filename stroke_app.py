@@ -95,7 +95,7 @@ with tab1:
         st.write(f"### Rate of stroke with {selected_feature}")
         st.dataframe(grouped)
         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent', color=grouped['stroke'].astype(str), barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid))
-        st.write(f"### Distribution of stroke with {selected_feature}")
+        st.write(f"### Relationship of stroke with {selected_feature}")
         st.plotly_chart(px.strip(df_filtered, x='stroke', y=selected_feature, color='stroke', stripmode='overlay', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
         st.write(f"### Rate of stroke with {selected_feature}")
