@@ -42,8 +42,8 @@ with tab1:
         df_filtered = df
 
     
-    counts_df = df_filtered[selected_feature].value_counts().reset_index()
-    st.dataframe(counts_df)
+    counts_df = df_filtered[selected_feature].value_counts().reset_index(name=no_of_individuals)
+    counts_df['stroke']= df_filtered['stroke']
     
 
     if pd.api.types.is_numeric_dtype(df_filtered[selected_feature]):
@@ -55,10 +55,13 @@ with tab1:
         st.write(f" Outliers count: {outliers.shape[0]}")
         st.plotly_chart(px.box(df_filtered, y=selected_feature))
         st.write(f"### Distribution of {selected_feature}")
+        st.dataframe(counts_df)
 
         st.plotly_chart(px.histogram(df_filtered, x=selected_feature, color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
         st.warning("Selected column is not numeric. Can't calculate statistics")
+        st.write(f"### Distribution of {selected_feature}")
+        st.dataframe(counts_df)
 
         st.plotly_chart(px.histogram(df_filtered, x=selected_feature, color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
 
