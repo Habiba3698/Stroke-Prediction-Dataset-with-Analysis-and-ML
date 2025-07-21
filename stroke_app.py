@@ -74,9 +74,9 @@ with tab1:
     df_filtered['stroke'],
     normalize='index'  # Normalize across rows
     ) * 100
-    st.dataframe(corsstab)
 
-crosstab = crosstab.reset_index()
+    crosstab = crosstab.reset_index()
+    st.dataframe(crosstab)
     
     if pd.api.types.is_numeric_dtype(grouped[selected_feature]):
         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent', color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
