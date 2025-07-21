@@ -69,6 +69,14 @@ with tab1:
     grouped['percent'] = grouped.groupby(selected_feature)['no_of_individuals'].transform(lambda x: x / x.sum() * 100)
     
     st.dataframe(grouped)
+    crosstab = pd.crosstab(
+    df_filtered[selected_feature],
+    df_filtered['stroke'],
+    normalize='index'  # Normalize across rows
+    ) * 100
+    st.dataframe(corsstab)
+
+crosstab = crosstab.reset_index()
     
     if pd.api.types.is_numeric_dtype(grouped[selected_feature]):
         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent', color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
