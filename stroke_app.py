@@ -79,8 +79,7 @@ with tab1:
          
 
 
-         st.plotly_chart(px.bar(grouped, 
-                               x=selected_feature, y='percent , color= "stroke" , color_discrete_sequence=px.colors.qualitative.Vivid)
+         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent' , color= "stroke" , color_discrete_sequence=px.colors.qualitative.Vivid)) 
         
 with tab2:
         st.subheader("🔀 Multivariate Analysis")
