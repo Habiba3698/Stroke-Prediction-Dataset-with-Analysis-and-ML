@@ -33,7 +33,7 @@ with tab1:
         st.header('DataSet Sample')
         st.dataframe(df.sample(100))
 
-    selected_feature = st.sidebar.selectbox("Select Feature for Analysis", df.columns)
+    selected_feature = st.sidebar.selectbox("Select Feature for Analysis", df.columns[:-1])
 
     # Filtered Data
     if stroke_filter != 'All':
