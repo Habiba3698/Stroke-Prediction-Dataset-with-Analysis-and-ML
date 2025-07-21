@@ -66,10 +66,10 @@ with tab1:
     grouped= df.groupby([selected_feature, 'stroke'], dropna=False).size().reset_index(name='no_of_individuals')   
     grouped['percent'] = grouped.groupby(selected_feature)['no_of_individuals'].transform(lambda x: x / x.sum() * 100)
     
-     st.dataframe(grouped)
-     if stroke_filter != 'All':
+    st.dataframe(grouped)
+    if stroke_filter != 'All':
         grouped = grouped[grouped['stroke'] == int(stroke_filter)]
-     else:
+    else:
          grouped=grouped
     
 
