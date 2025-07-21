@@ -68,7 +68,6 @@ with tab1:
     # bivariate analysis but stroke rate for each case not counts 
     st.subheader("Bivariate Analysis with stroke rate (not counts)")
     
-    st.write(f"### Rate of stroke with {selected_feature}")
     # display the rate of each stroke case with feature
     grouped= df.groupby([selected_feature, 'stroke'], dropna=False).size().reset_index(name='no_of_individuals')   
     grouped['percent'] = grouped.groupby(selected_feature)['no_of_individuals'].transform(lambda x: x / x.sum() * 100)
@@ -78,11 +77,25 @@ with tab1:
     else:
          grouped=grouped
         
-    st.dataframe(grouped)
     
 
     if pd.api.types.is_numeric_dtype(df_filtered[selected_feature]):
+        if(selected_feature== 'bmi' | selected_feature=='avg_glucose_level' | selected_feature=='age'):
+            st.write(f"### Average {selected_feature} by Stroke Group")
+            avg = df.groupby('stroke')[selected_feature].mean().reset_index()   
+            if stroke_filter != 'All':
+                avg = avg[avg['stroke'] == int(stroke_filter)]
+            else:
+                 avg=avg
+                
+            st.dataframe(avg)      
+            st.plotly_chart(px.bar(avg, x='stroke', y=selected_feature, color=grouped['stroke'].astype(str), barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid))  
+
+        
+        st.write(f"### Rate of stroke with {selected_feature}")
+        st.dataframe(grouped)
         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent', color=grouped['stroke'].astype(str), barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid))
+        st.write(f"### Distribution of stroke with {selected_feature}")
         st.plotly_chart(px.strip(df_filtered, x='stroke', y=selected_feature, color='stroke', stripmode='overlay', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
 
