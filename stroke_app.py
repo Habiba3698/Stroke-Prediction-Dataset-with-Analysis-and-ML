@@ -42,7 +42,7 @@ with tab1:
         df_filtered = df
 
     
-    counts_df = df_filtered[selected_feature].value_counts().reset_index(name=no_of_individuals)
+    counts_df = df_filtered[selected_feature].value_counts().reset_index(name='no_of_individuals')
     counts_df['stroke']= df_filtered['stroke']
     
 
