@@ -23,6 +23,8 @@ tab1, tab2 = st.tabs(["Univariate & Bivariate Analysis", "Multivariate Analysis"
 
 with tab1:
     st.subheader("📈 Univariate Analysis and 🔁 Bivariate Analysis")
+    st.subheader("Please note that feature counts and averages are univariate when you choose a certain class but bivariate when you choose "All"")
+
     # side bar 
     x = st.sidebar.checkbox('Show Data', False, key=1)
     stroke_filter = st.sidebar.selectbox("Select Stroke", np.append(df['stroke'].unique(),'All'))
