@@ -22,7 +22,7 @@ st.title("📊 Exploratory Data Analysis - Heart Stroke Data")
 tab1, tab2 = st.tabs(["Univariate & Bivariate Analysis", "Multivariate Analysis"])
 
 with tab1:
-    st.subheader("📈 Univariate Analysis and 🔁 Bivariate with Stroke count")
+    st.subheader("📈 Univariate Analysis and 🔁 Bivariate Analysis")
     # side bar 
     x = st.sidebar.checkbox('Show Data', False, key=1)
     stroke_filter = st.sidebar.selectbox("Select Stroke", np.append(df['stroke'].unique(),'All'))
