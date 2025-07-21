@@ -71,7 +71,7 @@ with tab1:
     st.dataframe(grouped)
     
     if pd.api.types.is_numeric_dtype(grouped[selected_feature]):
-        st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent', color='stroke', color_discrete_sequence=px.colors.qualitative.Vivid))
+        st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent', color=grouped['stroke'].astype(str), barmode='grouped', color_discrete_sequence=px.colors.qualitative.Vivid))
         st.plotly_chart(px.strip(df, x='stroke', y=selected_feature, color='stroke', stripmode='overlay', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
          counts_df = grouped[selected_feature].value_counts().reset_index()
@@ -79,7 +79,7 @@ with tab1:
          
 
 
-         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent' , color= "stroke" , color_discrete_sequence=px.colors.qualitative.Vivid)) 
+         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent' , color=grouped['stroke'].astype(str) , barmode='grouped', color_discrete_sequence=px.colors.qualitative.Vivid)) 
         
 with tab2:
         st.subheader("🔀 Multivariate Analysis")
