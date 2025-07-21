@@ -80,7 +80,7 @@ with tab1:
     
 
     if pd.api.types.is_numeric_dtype(df_filtered[selected_feature]):
-        if(selected_feature== 'bmi' | selected_feature=='avg_glucose_level' | selected_feature=='age'):
+        if(selected_feature== 'bmi' or selected_feature=='avg_glucose_level' or selected_feature=='age'):
             st.write(f"### Average {selected_feature} by Stroke Group")
             avg = df.groupby('stroke')[selected_feature].mean().reset_index()   
             if stroke_filter != 'All':
@@ -98,8 +98,9 @@ with tab1:
         st.write(f"### Distribution of stroke with {selected_feature}")
         st.plotly_chart(px.strip(df_filtered, x='stroke', y=selected_feature, color='stroke', stripmode='overlay', color_discrete_sequence=px.colors.qualitative.Vivid))
     else:
-
-         st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent' , color=grouped['stroke'].astype(str), barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid)) 
+        st.write(f"### Rate of stroke with {selected_feature}")
+        st.dataframe(grouped)
+        st.plotly_chart(px.bar(grouped, x=selected_feature, y='percent' , color=grouped['stroke'].astype(str), barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid)) 
         
 with tab2:
         st.subheader("🔀 Multivariate Analysis")
