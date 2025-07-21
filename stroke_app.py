@@ -89,7 +89,7 @@ with tab1:
                  avg=avg
                 
             st.dataframe(avg)      
-            st.plotly_chart(px.bar(avg, x='stroke', y=selected_feature, color=grouped['stroke'].astype(str), barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid))  
+            st.plotly_chart(px.bar(avg, x='stroke', y=selected_feature, color=avg['stroke'].astype(str), barmode='group', color_discrete_sequence=px.colors.qualitative.Vivid))  
 
         
         st.write(f"### Rate of stroke with {selected_feature}")
