@@ -40,6 +40,10 @@ with tab1:
         df_filtered = df[df['stroke'] == int(stroke_filter)]
     else:
         df_filtered = df
+
+    
+    counts_df = df_filtered[selected_feature].value_counts().reset_index()
+    st.dataframe(counts_df)
     
 
     if pd.api.types.is_numeric_dtype(df_filtered[selected_feature]):
@@ -66,7 +70,6 @@ with tab1:
     grouped= df.groupby([selected_feature, 'stroke'], dropna=False).size().reset_index(name='no_of_individuals')   
     grouped['percent'] = grouped.groupby(selected_feature)['no_of_individuals'].transform(lambda x: x / x.sum() * 100)
     
-    st.dataframe(grouped)
     if stroke_filter != 'All':
         grouped = grouped[grouped['stroke'] == int(stroke_filter)]
     else:
